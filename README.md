@@ -18,7 +18,6 @@
 在线预览地址：[https://oyjt.github.io/uniapp-vue3-template/](https://oyjt.github.io/uniapp-vue3-template/)
 
 ### 特性
-
 - [x] 集成uview-plus3.0 ui库
 - [x] 支持多环境打包构建
 - [x] 使用pinia状态管理
