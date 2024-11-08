@@ -1,7 +1,3 @@
-<h1 align="center">
-  <a href="https://github.com/oyjt/uniapp-vue3-template" target="_blank">uniapp 团队协作开发实践模板(Vue3)</a>
-</h1>
-
 <div align="center">
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/oyjt/uniapp-vue3-template?style=flat&logo=github)](https://github.com/oyjt/uniapp-vue3-template)
