@@ -1,0 +1,298 @@
+<h1 align="center">
+  <a href="https://github.com/oyjt/uniapp-vue3-template" target="_blank">uniapp 团队协作开发实践模板(Vue3)</a>
+</h1>
+
+<div align="center">
+
+[![GitHub Repo stars](https://img.shields.io/github/stars/oyjt/uniapp-vue3-template?style=flat&logo=github)](https://github.com/oyjt/uniapp-vue3-template)
+[![GitHub forks](https://img.shields.io/github/forks/oyjt/uniapp-vue3-template?style=flat&logo=github)](https://github.com/oyjt/uniapp-vue3-template)
+![node version](https://img.shields.io/badge/node-%3E%3D18-green)
+![pnpm version](https://img.shields.io/badge/pnpm-%3E%3D8-green)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/oyjt/uniapp-vue3-template)
+![GitHub License](https://img.shields.io/github/license/oyjt/uniapp-vue3-template)
+
+</div>
+
+使用uniapp+vite+vue3+typescript+uview-plus3.0 搭建的适合团队协作的快速开发模版
+
+[uview-plus官方文档](https://uiadmin.net/uview-plus/)
+
+本项目集众多项目的优点，打造最适合团队协作开发的项目模板。
+
+在线预览地址：[https://oyjt.github.io/uniapp-vue3-template/](https://oyjt.github.io/uniapp-vue3-template/)
+
+### 特性
+
+- [x] 集成uview-plus3.0 ui库
+- [x] 支持多环境打包构建
+- [x] 使用pinia状态管理
+- [x] 封装网络请求，并支持Typescript
+- [x] 支持路径别名
+- [x] 支持自动加载组件和API
+- [x] 自动校验git提交代码格式
+- [x] 集成ESLint、StyleLint、EditorConfig代码格式规范
+- [x] Typescript支持
+- [x] 集成UnoCSS
+- [x] 集成iconify图标库
+- [x] 集成z-paging下拉刷新功能
+- [x] 添加页面跳转拦截，登录权限校验
+- [x] 支持token无痛刷新
+- [x] 支持持续集成
+- [x] 项目分包
+- [x] 集成小程序隐私协议授权组件
+- [x] 项目构建自动删除本地图片并替换本地图片路径为线上图片
+- [x] 集成包体积视图分析插件
+
+### VScode插件推荐
+- 可以为pages.json、manifest.json等提供语法提示和校验工作。[uni-app-schemas](https://marketplace.visualstudio.com/items?itemName=uni-helper.uni-app-schemas-vscode)
+- uni-app 基本能力代码片段。[uni-app-snippets](https://marketplace.visualstudio.com/items?itemName=uni-helper.uni-app-snippets-vscode)
+- 一键创建页面、组件、分包，个人用不习惯。uni-create-view(https://marketplace.visualstudio.com/items?itemName=mrmaoddxxaa.create-uniapp-view)
+
+### 目录结构
+项目中采用目前最新的技术方案来实现，目录结构清晰。
+```
+uniapp-vue3-project
+├ build                 vite配置统一管理
+│  ├ config
+│  └ plugins
+├ env                   环境变量
+├ scripts               一些脚本
+│  ├ postupgrade.js     依赖库清理
+│  └ verifyCommit.js    git提交检验
+├ src
+│  ├ api                接口管理
+│  ├ components         公共组件
+│  ├ hooks              常用hooks封装
+│  ├ pages              页面管理
+│  ├ static             静态资源
+│  ├ store              状态管理
+│  ├ utils              一些工具
+│  ├ App.vue
+│  ├ main.ts
+│  ├ manifest.json      项目配置
+│  ├ pages.json         页面配置
+│  ├ permission.ts      页面访问权限控制
+│  └ uni.scss           全局scss变量
+├ types                 全局typescript类型文件
+│  ├ auto-imports.d.ts
+│  ├ components.d.ts
+│  ├ global.d.ts
+│  └ module.d.ts
+├ LICENSE
+├ README.md
+├ cz.config.js          cz-git配置
+├ eslint.config.js      eslint配置
+├ index.html
+├ package.json
+├ pnpm-lock.yaml
+├ stylelint.config.js   stylelint配置
+├ tsconfig.json
+├ uno.config.ts         unocss配置
+└ vite.config.ts        vite配置
+```
+
+#### vite插件管理
+```
+build
+├ config            vite配置
+│  ├ index.ts       入口文件
+│  └ proxy.ts       跨域代理配置
+└ plugins           vite插件
+   ├ autoImport.ts  自动导入api
+   ├ cleanImage.ts  自动清理图片文件
+   ├ component.ts   自动导入组件
+   ├ imagemin.ts    图片压缩
+   ├ index.ts       入口文件
+   ├ replaceUrl.ts  自动替换图片地址为CDN地址
+   ├ unocss.ts      unocss配置
+   └ visualizer.ts  包体积视图分析
+
+```
+
+#### 接口管理
+```
+api
+├ common       通用api
+│  ├ index.ts
+│  └ types.ts
+├ user         用户相关api
+│  ├ index.ts
+│  └ types.ts
+└ index.ts     入口文件
+```
+
+#### hooks管理
+```
+hooks
+├ use-clipboard  剪切板
+│  └ index.ts
+├ use-loading    loading
+│  └ index.ts
+├ use-modal      模态框
+│  └ index.ts
+├ use-share      分享
+│  └ index.ts
+└ index.ts       入口文件
+```
+
+### 页面管理
+```
+pages
+├ common           公共页面（分包common）
+│  ├ login
+│  │  └ index.vue
+│  └ webview
+│     └ index.vue
+└ tab              主页面（主包）
+   ├ home
+   │  └ index.vue
+   ├ list
+   │  └ index.vue
+   └ user
+      └ index.vue
+```
+
+#### 状态管理
+```
+store
+├ modules
+│  ├ app          app状态
+│  │  ├ index.ts
+│  │  └ types.ts
+│  └ user         用户状态
+│     ├ index.ts
+│     └ types.ts
+└ index.ts        入口文件
+```
+
+### 工具方法
+```
+utils
+├ auth                token相关方法
+│  └ index.ts
+├ common              通用方法
+│  └ index.ts
+├ modals              弹窗相关方法
+│  └ index.ts
+├ request             网络请求相关方法
+│  ├ index.ts
+│  ├ interceptors.ts
+│  ├ status.ts
+│  └ type.ts
+└ index.ts            入口文件
+```
+
+### 使用方法
+
+```bash
+# 安装依赖
+pnpm install
+
+# 启动H5
+pnpm dev:h5
+
+# 启动微信小程序
+pnpm dev:mp-weixin
+```
+
+### 发布
+
+```bash
+# 构建开发环境
+pnpm build:h5
+pnpm build:mp-weixin
+
+# 构建测试环境
+pnpm build:h5-test
+pnpm build:mp-weixin-test
+
+# 构建生产环境
+pnpm build:h5-prod
+pnpm build:mp-weixin-prod
+```
+
+### 代码提交
+```bash
+pnpm cz
+```
+
+### 更新uniapp版本
+
+更新uniapp相关依赖到最新正式版
+```bash
+npx @dcloudio/uvm@latest
+```
+或者执行下面的命令
+```bash
+pnpm uvm
+```
+
+在升级完后，会自动添加很多无用依赖，执行下面的代码减小保体积
+```
+pnpm uvm-rm
+```
+
+### `v3` 代码块
+在 `vue` 文件中，输入 `v3` 按 `tab` 即可快速生成页面模板，可以大大加快页面生成。
+> 原理：基于 VSCode 代码块生成。
+
+### 注意事项
+1. 如果项目中不需要压缩图片，可以移除`vite-plugin-imagemin`插件后再初始化，以避免由于网路问题造成初始化报错的情况
+2. 微信小程序开发者工具中内置的打包分析不准确，本项目使用了`rollup-plugin-visualizer`来分析小程序包体积，默认不开启，有需要的移除相关注释即可
+3. 自动构建处理本地图片资源，使用了`vite-plugin-clean-build`和`vite-plugin-replace-image-url`这两个插件，默认不开启相关功能，如果需要使用再`build/vite/plugins/index.ts`文件中移除相关注释即可
+4. 使用`vite-plugin-replace-image-url`插件，想要图片自动替换生效，需要在项目中使用绝对路径引入图片资源，如下示例所示。
+
+    示例一：style中的图片使用
+    ```
+    <template>
+      <view :style="`background-image: url('${bgImg}')`">
+        ...
+      </view>
+    </template>
+    <script setup lang="ts">
+    import bgImg from '@/static/images/bg_img.png';
+    </script>
+    ```
+
+    示例二：js中的图片使用
+
+    ```
+    <script setup lang="ts">
+    import walletIcon from '@/static/images/icon_wallet.png';
+    const menuList = [
+      {
+        name: 'wallet',
+        title: '钱包',
+        icon: walletIcon,
+      },
+      ...
+    ];
+    </script>
+    ```
+
+    示例二：css中的图片使用
+    ```
+    <style lang="scss">
+    .icon {
+      background-image: url('@/static/images/icon.png')
+    }
+    </style>
+    ```
+5. 本项目中`permission.ts`中的拦截代码在小程序中的`tab`切换中无效，下面是官方给出的回复及解决方案。
+
+> 拦截uni.switchTab本身没有问题。但是在微信小程序端点击tabbar的底层逻辑并不是触发uni.switchTab。所以误认为拦截无效，此类场景的解决方案是在tabbar页面的页面生命周期onShow中处理。
+
+6. 部分用户构建微信小程序如下错误，原因是微信开发者工具缺失了对应的依赖。
+```
+This @babel/plugin-proposal-private-property-in-object version is not meant to
+be imported.
+```
+此时升级微信开发者工具，或者安装`@babel/plugin-proposal-private-property-in-object`依赖即可解决问题。
+
+### 捐赠
+
+如果你觉得这个项目对你有帮助，你可以请作者喝饮料🍹
+
+<p align='center'>
+<img alt="微信收款码" src="./src/static/images/pay.png" height="330" style="display:inline-block; height:330px;">
+</p>
